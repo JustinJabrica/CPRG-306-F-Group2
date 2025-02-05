@@ -1,54 +1,97 @@
-<!doctype html>
+<!-- Web Development 2 - CPRG 306-F Group 2 - Assignment 1
+ Justin Jabrica, Nathan Gui, Naya Bektenova, Shailesh Bhatta
+ February 4, 2025
+
+ This program converts units from metric to imperial and vice versa.
+ The units represent mass, length, and temperature.  The top of the page
+ welcomes the user buttons below the title allow for navigation and selection of units.
+ Below, the user may input values for a unit and select convert to convert
+ the indicated unit to its metric or imperial counterpart.  Between the indicated units is
+ a button which toggles the conversion method between imperial and metric.  -->
+
+<!DOCTYPE html>
 <html lang="">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="https://cdn.tailwindcss.com"></script>
-        <script src="./converter.js"></script>
-        <title> Assignment: Advanced JavaScript and Tailwind CSS</title>
-        <style>
-            [contentEditable=true]:empty:before{
-                content:attr(data-ph);
-                color: dimgray;
-            }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="./converter.js"></script>
+    <title>Assignment: Advanced JavaScript and Tailwind CSS</title>
+    <style>
+      [contentEditable="true"]:empty:before {
+        content: attr(data-ph);
+        color: dimgray;
+      }
+    </style>
+  </head>
+  <body
+    class="w-full bg-blue-100 flex-wrap justify-stretch"
+    onload="navigationClick(null);"
+  >
+    <h1 class="w-full text-center text-3xl font-bold">
+      Welcome to CPRG-306-F-Group2 Units Convertor
+    </h1>
+    <div class="flex flex-nowrap m-2">
+      <div
+        id="navi-1"
+        class="w-1/3 m-2 p-2 bg-blue-300 rounded-lg text-center hover:bg-blue-400"
+        onclick="navigationClick(this)"
+      >
+        <p id="navi-1-text" class="">Mass</p>
+      </div>
+      <div
+        id="navi-2"
+        class="w-1/3 m-2 p-2 bg-blue-300 rounded-lg text-center hover:bg-blue-400"
+        onclick="navigationClick(this)"
+      >
+        <p id="navi-2-text" class="">Length</p>
+      </div>
+      <div
+        id="navi-3"
+        class="w-1/3 m-2 p-2 bg-blue-300 rounded-lg text-center hover:bg-blue-400"
+        onclick="navigationClick(this)"
+      >
+        <p id="navi-3-text" class="">Temperature</p>
+      </div>
+    </div>
 
-        </style>
-    </head>
-    <body class="bg-blue-100" onload="navigationClick(null);">
-        <h1 class="text-Black-500 text-3xl font-bold">Welcome to CPRG-306-F-Group2 Units Convertor</h1>
-        <br/>
-        <div class="pl-3 pt-2 border-2 border-t-blue-500 flex flex-wrap">
-            <div id="navi-1" class="w-60 mx-2 p-2 bg-blue-300 rounded-lg text-center hover:bg-blue-400" onclick="navigationClick(this)"><p id="navi-1-text" class="">Mass</p></div>
-            <div id="navi-2" class="w-60 mx-2 p-2 bg-blue-300 rounded-lg text-center hover:bg-blue-400" onclick="navigationClick(this)"><p id="navi-2-text" class="">Length</p></div>
-            <div id="navi-3" class="w-60 mx-2 p-2 bg-blue-300 rounded-lg text-center hover:bg-blue-400" onclick="navigationClick(this)"><p id="navi-3-text" class="">Temperature</p></div>
-        </div>
-
-        <div class="flex-col">
-            <div class="ml-5 mt-5 flex-col">
-                <div class="flex">
-                    <div class="w-40 mt-2 p-2 text-right"><p id="frUnit" class="font-bold"></p></div>
-                    <div id="frAmt"
-                         class="w-1/2 mt-2 p-2 border bg-gray-50"
-                         contenteditable="true"
-                         data-ph="input, separate multiple values with comma."
-                         oninput="if(this.innerHTML.trim()==='<br>')this.innerHTML=''"></div>
-                </div>
-                <div class="w-8 py-1 px-2 ml-28 my-3 bg-gray-300 font-bold rounded-lg hover:bg-gray-400" onclick="switchUnit()">⇄</div>
-                <div class="flex">
-                    <div class="w-40 mt-2 p-2 text-right"><p id="toUnit"  class="font-bold"></p></div>
-                    <div id="toAmt"
-                         class="w-1/2 mt-2 p-2 border bg-gray-50"
-                         contenteditable="true"
-                         data-ph="output"
-                         oninput="if(this.innerHTML.trim()==='<br>')this.innerHTML=''"></div>
-                </div>
-                <div class="mt-16 p-2 flex">
-                    <div class="w-1/2 py-1 px-2"></div>
-                    <div class="ml-16 py-1 px-2 bg-gray-300 font-bold rounded-lg hover:bg-gray-400" onclick="convertUnit()">Convert</div>
-                </div>
-            </div>
-        </div>
-        <input id="iptGrpIdx" value="0" type="hidden"/>
-        <input id="iptFrIdx" value="0" type="hidden"/>
-    </body>
+    <div class="flex flex-nowrap bg-blue-200 rounded-lg m-4 p-1">
+      <div class="w-1/2 m-2 p-2 text-center">
+        <p id="frUnit" class="font-bold"></p>
+      </div>
+      <div
+        id="frAmt"
+        class="w-1/2 m-2 p-2 border bg-gray-50 rounded-lg"
+        contenteditable="true"
+        data-ph="input, separate multiple values with comma."
+        oninput="if(this.innerHTML.trim()==='<br>')this.innerHTML=''"
+      ></div>
+    </div>
+    <div
+      class="w-1/3 bg-gray-300 font-bold rounded-lg hover:bg-gray-400 text-center"
+      onclick="switchUnit()"
+    >
+      ⇄
+    </div>
+    <div class="flex flex-nowrap bg-blue-200 rounded-lg m-4 p-1">
+      <div class="w-1/2 m-2 p-2 text-center">
+        <p id="toUnit" class="font-bold"></p>
+      </div>
+      <div
+        id="toAmt"
+        class="w-1/2 m-2 p-2 border bg-gray-50 rounded-lg"
+        contenteditable="true"
+        data-ph="output"
+        oninput="if(this.innerHTML.trim()==='<br>')this.innerHTML=''"
+      ></div>
+    </div>
+    <div
+      class="w-1/3 bg-gray-300 font-bold rounded-lg hover:bg-gray-400 text-center"
+      onclick="convertUnit()"
+    >
+      Convert
+    </div>
+    <input id="iptGrpIdx" value="0" type="hidden" />
+    <input id="iptFrIdx" value="0" type="hidden" />
+  </body>
 </html>
