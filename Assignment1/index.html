@@ -1,13 +1,14 @@
-<!-- Web Development 2 - CPRG 306-F Group 2 - Assignment 1
- Justin Jabrica, Nathan Gui, Naya Bektenova, Shailesh Bhatta
- February 4, 2025
-
- This program converts units from metric to imperial and vice versa.
- The units represent mass, length, and temperature.  The top of the page
- welcomes the user buttons below the title allow for navigation and selection of units.
- Below, the user may input values for a unit and select convert to convert
- the indicated unit to its metric or imperial counterpart.  Between the indicated units is
- a button which toggles the conversion method between imperial and metric.  -->
+/* CPRG-306-F-Group2 Units Converter ---------------------------------- Authors:
+Chenglin Gui, Justin Jabrica, Naya Bektenova, Shailesh Bhatta Date Created: Feb
+4, 2025 Program description: This program is a unit converter that allows users
+to convert values between mass, length, and temperature units. Users can input
+single or multiple numeric values, select the desired units, and get instant
+conversions. The program uses JavaScript for processing and Tailwind CSS for a
+clean, responsive interface. Core Functions: - navigationClick(obj): Handles
+category switching & UI updates - switchUnit(): Swaps 'from' and 'to' units -
+setFrToUnit(grpIdx, frIdx): Updates unit labels - getConverter(fromUnit):
+Returns conversion formula - convertUnit(): Processes input, converts values,
+and outputs results */
 
 <!DOCTYPE html>
 <html lang="">
