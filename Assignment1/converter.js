@@ -72,6 +72,13 @@ const convertUnit = () => {
   const frUnit = document.getElementById("frUnit").innerText; //get selected unit
   const frAmtStr = document.getElementById("frAmt").innerText; //get input amounts
 
+  if (frAmtStr.trim().length === 0) {
+    // alert("Empty amount."); // without alert and stop
+    return;
+  } else if (frAmtStr.replace(new RegExp("^(\\s*-?\\d+(\\.\\d+)?)(\\s*,\\s*-?\\d+(\\.\\d+)?)*(\\s*)?$","gm"), '') !== '') {
+    alert("Invalid input format."); // alerting error format but keep on converting
+  }
+
   const converter = getConverter(frUnit); //get conversion function
 
   const frAmtArr = frAmtStr.split(",").map((item) => item.trim()); //spplit input into an array and clean spaces
