@@ -3,9 +3,9 @@ const GLOBAL_UNIT_ARRAY = [
   ["Miles", "Kilometres (km)"],
   ["Celsius (°C)", "Fahrenheit (°F)"],
 ];
-
+// Handles navigation clicks and updates selected unit category
 const navigationClick = (obj) => {
-  document.getElementById("toAmt").innerText = "";
+  document.getElementById("toAmt").innerText = "";// Clear output field
   let grpIdx = document.getElementById("iptGrpIdx").value;
   let frIdx = document.getElementById("iptFrIdx").value;
   let txtStyleArr = ["italic", "italic", "italic"];
@@ -14,7 +14,7 @@ const navigationClick = (obj) => {
       case "navi-1":
         grpIdx = 0;
         frIdx = 0;
-        txtStyleArr[0] = "font-bold";
+        txtStyleArr[0] = "font-bold";  // Highlight selected navigation
         break;
       case "navi-2":
         grpIdx = 1;
@@ -27,10 +27,11 @@ const navigationClick = (obj) => {
         txtStyleArr[2] = "font-bold";
         break;
     }
+    // Update the input fields with the new indices
     document.getElementById("iptGrpIdx").value = grpIdx;
     document.getElementById("iptFrIdx").value = frIdx;
   } else {
-    txtStyleArr[0] = "font-bold";
+    txtStyleArr[0] = "font-bold"; // Default to first option if no input
   }
   document.getElementById("navi-1-text").setAttribute("class", txtStyleArr[0]);
   document.getElementById("navi-2-text").setAttribute("class", txtStyleArr[1]);
@@ -38,6 +39,7 @@ const navigationClick = (obj) => {
   setFrToUnit(grpIdx, frIdx);
 };
 
+// Switch between "from" and "to" units
 const switchUnit = () => {
   document.getElementById("toAmt").innerText = "";
   let grpIdx = document.getElementById("iptGrpIdx").value;
